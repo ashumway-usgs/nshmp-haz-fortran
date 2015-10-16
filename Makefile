@@ -8,24 +8,29 @@
 
 .PHONY: all clean
 
-#F_COMPILER = gfortran
+#m_bit=-m32 # flag does not work on Linux cluster
+#m_bit=-m32 # flag does not work on Linux cluster
+m_bit=
+
 F_COMPILER = gfortran
 F_COMPILER2 = ifort
-FFLAGS1 = -Warray-bounds -ffixed-line-length-none -ffpe-trap= -fbounds-check $(LDLIBS)
+FFLAGS1 = -O2 -Warray-bounds -ffixed-line-length-none -ffpe-trap= -fbounds-check $(m_bit) 
 FFLAGS1_I = -132 
 #FFLAGS2 = $(FFLAGS1) -fcray-pointer $(m_bit)
 FFLAGS2 = $(FFLAGS1) $(m_bit)
 
 C_COMPILER = gcc
-#CFLAGS = -O $(m_bit)
-CFLAGS = 
+CFLAGS = -O $(m_bit)
 
 OUT = bin
 SRC = src
 UTIL = $(SRC)/util
 
 
-all: CreateBinDir hazallXL.v2 hazallXL.v4 hazFXnga13l hazgridXnga13l hazSUBX hazpoint hazinterpnga avg_dist fltrate.v2 get_avalue gethead.nga getmeanrjf.v2 gutenberg assim.2013
+#all: CreateBinDir hazallXL.v2 hazallXL.v4 hazFXnga7c hazFXnga13l hazgridXnga5 hazgridXnga13l hazSUBXnga hazSUBXngatest hazpoint hazinterpnga avg_dist fltrate.v2 get_avalue gethead.nga getmeanrjf getmeanrjf.v2 gutenberg
+#all: CreateBinDir hazallXL.v2 hazallXL.v4 hazallXL.v5 hazFXnga13l hazgridXnga13l hazSUBXnga hazSUBXngatest hazpoint hazinterpnga avg_dist fltrate.v2 get_avalue gethead.nga getmeanrjf getmeanrjf.v2 gutenberg
+#all: CreateBinDir hazallXL.v2 hazallXL.v4 hazFXnga13l hazgridXnga13l hazSUBXnga hazSUBXngatest hazpoint hazinterpnga avg_dist fltrate.v2 get_avalue gethead.nga getmeanrjf getmeanrjf.v2 gutenberg
+all: CreateBinDir hazallXL.v2 hazallXL.v4 hazFXnga13l hazgridXnga13l hazSUBX hazpoint hazinterpnga avg_dist fltrate.v2 get_avalue gethead.nga getmeanrjf getmeanrjf.v2 gutenberg assim.2013
 
 CreateBinDir:
 	mkdir -p $(OUT)
